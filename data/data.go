@@ -7,8 +7,8 @@ import (
 
 var (
 	// Used regex statements
-	SetRe   = regexp.MustCompile(`^SET[\w\s]*$`)
-	SetPXRe = regexp.MustCompile(`^SET [\w]+ [\w\s]+ PX \d+$`)
+	SetRe   = regexp.MustCompile(`^SET\s[\w]+\s[\w\s]+$`)
+	SetPXRe = regexp.MustCompile(`^SET\s[\w]+\s[\w\s]+\sPX\s\d+$`)
 	GetRe   = regexp.MustCompile(`^GET\s?[\w\s]*$`)
 )
 
