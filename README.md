@@ -4,12 +4,6 @@
 ## **Description**
 This project implements a **simple key-value store** using **UDP protocol**. It mimics a basic version of Redis, allowing the client to store and retrieve data with commands like `SET`, `GET`, and `PING`. This server operates entirely in memory and can optionally expire keys after a specified duration using the `PX` flag for the `SET` command.
 
-## **Learning Objectives**
-- Understand and implement **UDP communication**.
-- Work with **concurrent programming** using goroutines.
-- Implement a **key-value store** and simulate key expiration using the `PX` flag.
-- Learn basic **data synchronization** and thread safety using `sync.Map`.
-
 ## **Key Features**
 - **`SET` Command**: Store a key-value pair with an optional expiration time (`PX` flag).
 - **`GET` Command**: Retrieve a value by its key.
