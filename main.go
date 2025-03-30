@@ -6,8 +6,9 @@ import (
 	"log/slog"
 	"net"
 	"os"
-	. "own-redis/handler"
 	"strings"
+
+	. "own-redis/handler"
 )
 
 var PortNum int

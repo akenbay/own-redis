@@ -3,8 +3,9 @@ package handler
 import (
 	"log/slog"
 	"net"
-	. "own-redis/data"
 	"strings"
+
+	. "own-redis/data"
 )
 
 func RequestHandler(msg string, addr *net.UDPAddr, conn *net.UDPConn) {
