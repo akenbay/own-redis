@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"net"
 	"os"
+	. "own-redis/handler"
 	"strings"
 )
 
@@ -48,22 +49,14 @@ func main() {
 		// Read from UDP socket
 		n, clientAddr, err := conn.ReadFromUDP(buffer)
 		if err != nil {
-			fmt.Println("Error reading from UDP:", err)
-			continue
+			slog.Error(err.Error())
+			conn.WriteToUDP([]byte("(error) ERR "+err.Error()+"\n"), addr)
+			os.Exit(1)
 		}
 
 		// Convert message to string and trim spaces
 		message := strings.TrimSpace(string(buffer[:n]))
 
-		fmt.Println(message)
-
-		// Check if the command is PING
-
-		if strings.ToUpper(message) == "PING" {
-			fmt.Println("Received PING from", clientAddr)
-			conn.WriteToUDP([]byte("PONG"), clientAddr)
-		} else {
-			fmt.Println("Unknown command:", message)
-		}
+		RequestHandler(message, clientAddr, conn)
 	}
 }
