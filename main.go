@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log/slog"
 	"net"
+	"os"
 )
 
 var PortNum int
@@ -24,14 +26,18 @@ func main() {
 
 	addr, err := net.ResolveUDPAddr("udp", port)
 	if err != nil {
-		fmt.Println("Error resolving address:", err)
-		return
+		slog.Error(err.Error())
+		os.Exit(1)
+
 	}
 
 	conn, err := net.ListenUDP("udp", addr)
 	if err != nil {
-		fmt.Println("Error creating UDP server:", err)
-		return
+		slog.Error(err.Error())
+		os.Exit(1)
+
 	}
 	defer conn.Close()
+
+	fmt.Printf("Server Started\nPort: %d\n", PortNum)
 }
