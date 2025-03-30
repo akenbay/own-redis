@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"net"
 	"os"
+	"strings"
 )
 
 var PortNum int
@@ -39,5 +40,30 @@ func main() {
 	}
 	defer conn.Close()
 
-	fmt.Printf("Server Started\nPort: %d\n", PortNum)
+	fmt.Printf("Server Started\nPort: %s\n", addr)
+
+	buffer := make([]byte, 1024)
+
+	for {
+		// Read from UDP socket
+		n, clientAddr, err := conn.ReadFromUDP(buffer)
+		if err != nil {
+			fmt.Println("Error reading from UDP:", err)
+			continue
+		}
+
+		// Convert message to string and trim spaces
+		message := strings.TrimSpace(string(buffer[:n]))
+
+		fmt.Println(message)
+
+		// Check if the command is PING
+
+		if strings.ToUpper(message) == "PING" {
+			fmt.Println("Received PING from", clientAddr)
+			conn.WriteToUDP([]byte("PONG"), clientAddr)
+		} else {
+			fmt.Println("Unknown command:", message)
+		}
+	}
 }
