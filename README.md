@@ -131,7 +131,12 @@ This project is open-source under the **MIT License**.
 
 ---
 
-### **Conclusion**
-This is a simple, lightweight **key-value store** built with **Go** and **UDP**. It helps you understand **networking**, **concurrent programming**, and **data storage** using in-memory maps.
+### Author 
+This project has been created by:
 
-Let me know if you need any further details or changes to the README! 😊
+Aibar Kenbay
+
+Contacts:
+- email: akenbay@icloud.com
+- [GitHub](https://github.com/akenbay/)
+- [LinkedIn](https://www.linkedin.com/in/aibar-kenbay-29394b2a4/)
